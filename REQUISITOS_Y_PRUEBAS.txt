@@ -1,0 +1,94 @@
+RELOJ ARCANO — REQUISITOS Y PRUEBAS
+====================================
+
+A. REQUISITOS DEL PROFESOR
+--------------------------
+[x] Python puro.
+[x] Única importación: import tkinter as tk (sin "from", sin otros módulos).
+[x] Lista doblemente enlazada circular real: clases HourNode y CircularDoublyLinkedList.
+[x] Programación orientada a objetos (9 clases).
+[x] Reloj ANALÓGICO con manecillas de hora, minuto y segundo dibujadas en Canvas.
+[x] Interfaz gráfica moderna (azul marino, turquesa, dorado) solo con Tkinter.
+[x] Sin HTML, CSS, JavaScript, pip, Internet ni archivos externos.
+[x] Seno, coseno y raíz cuadrada implementados en el código (clase ArcaneMath).
+[x] Actualización con after(); ningún bucle infinito que congele la ventana.
+
+
+B. PRUEBAS AUTOMÁTICAS (botón "Ejecutar autopruebas")
+-----------------------------------------------------
+Resultado al entregar: 35 de 35 aprobadas.
+
+ 01 La lista contiene exactamente 12 nodos ............................. OK
+ 02 Recorrido hacia adelante = 1..12 ................................... OK
+ 03 Recorrido hacia atrás = 12..1 ...................................... OK
+ 04 move_forward(12) devuelve el nodo 1 ................................ OK
+ 05 move_backward(1) devuelve el nodo 12 ............................... OK
+ 06 12.next es el mismo objeto que la cabeza ........................... OK
+ 07 1.prev es el mismo objeto que la cola .............................. OK
+ 08 Todos los enlaces prev/next son coherentes ......................... OK
+ 09 Tres vueltas seguidas sin encontrar None ........................... OK
+ 10 verify_integrity() aprueba la lista correcta ....................... OK
+ 11 find(7) encuentra el nodo 7 ........................................ OK
+ 12 find(13) devuelve None ............................................. OK
+ 13 append() rechaza una hora repetida ................................. OK
+ 14 verify_integrity() detecta un enlace dañado ........................ OK
+ 15 23:59:59 + 1 s = 12:00:00 AM ....................................... OK
+ 16 12:00 AM - 1 min = 11:59 PM ........................................ OK
+ 17 11:59 AM + 1 min = 12:00 PM ........................................ OK
+ 18 +1 hora desde las 12 llega a la 1 .................................. OK
+ 19 -1 hora desde la 1 llega a las 12 .................................. OK
+ 20 La hora del reloj es un objeto HourNode de la lista ................ OK
+ 21 sen(30°) = 0.5 ..................................................... OK
+ 22 cos(60°) = 0.5 ..................................................... OK
+ 23 sen(1000°) = sen(280°) ............................................. OK
+ 24 raíz cuadrada de 2 ................................................. OK
+ 25 A las 3:00 la horaria apunta al 3 .................................. OK
+ 26 A las 6:00 la horaria apunta al 6 .................................. OK
+ 27 A las 9:00 la horaria apunta al 9 .................................. OK
+ 28 A las 12:00 la horaria apunta al 12 ................................ OK
+ 29 A las 3:30 la horaria está a 105° .................................. OK
+ 30 A los 15 min 30 s la minutera está en 93° .......................... OK
+ 31 El cronómetro empieza en 00:00:00 .................................. OK
+ 32 Un segundo "Iniciar" no crea otro conteo ........................... OK
+ 33 Mide 01:02:05 tras 3 725 000 ms .................................... OK
+ 34 En pausa el tiempo no avanza ....................................... OK
+ 35 Reiniciar vuelve a 00:00:00 y lo detiene ........................... OK
+
+
+C. PRUEBAS MANUALES (hazlas antes de presentar)
+-----------------------------------------------
+[ ] 1. Ejecutar "python main.py": la ventana abre sin errores y muestra la hora del sistema.
+[ ] 2. El segundero avanza una marca por segundo; la minutera y la horaria se mueven gradualmente.
+[ ] 3. La hora digital (HH:MM:SS + AM/PM) coincide con las manecillas.
+[ ] 4. Pausar: el reloj se detiene y el indicador del encabezado pasa a "EN PAUSA" (ámbar).
+[ ] 5. Reanudar: el reloj continúa desde donde se pausó.
+[ ] 6. Sincronizar: vuelve a la hora del sistema.
+[ ] 7. Con el reloj en pausa, pulsar "+1 hora"/"-1 hora" hasta dejarlo en 3:00, 6:00, 9:00 y 12:00
+       (ajustando minutos a 00): la horaria apunta al número correcto.
+[ ] 8. "+1 hora" desde las 12 → 1. "-1 hora" desde la 1 → 12. La barra de estado lo anuncia.
+[ ] 9. "+1 min" en el minuto 59 → 00 y la hora avanza; "-1 min" en 00 → 59 y la hora retrocede.
+[ ] 10. Entre 11 y 12 el indicador AM/PM cambia.
+[ ] 11. "Hora siguiente"/"Hora anterior": el nodo turquesa del diagrama se mueve y la línea
+        "anterior ← [actual] → siguiente" se actualiza.
+[ ] 12. "Recorrer adelante": 1 → 2 → ... → 12 → 1. "Recorrer atrás": 12 → 11 → ... → 1 → 12.
+[ ] 13. "Verificar integridad": punto verde y mensaje "Lista íntegra".
+[ ] 14. Cronómetro: Iniciar, Pausar, Iniciar (continúa), Reiniciar (vuelve a 00:00:00).
+[ ] 15. Pulsar "Iniciar" muchas veces seguidas: el cronómetro no va más rápido.
+[ ] 16. Mientras corren el cronómetro y un recorrido, la ventana sigue respondiendo.
+[ ] 17. Redimensionar/maximizar la ventana: la esfera y el diagrama se mantienen centrados.
+[ ] 18. Buscar "import" y "from " en main.py (Ctrl+Shift+F): solo aparece import tkinter as tk.
+
+
+D. VERIFICACIÓN REALIZADA POR EL DESARROLLADOR
+----------------------------------------------
+Entorno: Linux, Python 3.12, Tk 8.6, pantalla virtual (Xvfb) de 1366x768.
+- Compilación (py_compile): sin errores de sintaxis.
+- Autopruebas: 35/35.
+- Búsqueda de importaciones: única línea "import tkinter as tk"; ningún "from", __import__, exec ni eval.
+- Ejecución de la interfaz con todos los botones accionados por código (ajustes, pausa,
+  reanudar, cronómetro con Iniciar repetido, recorridos, verificación, autopruebas):
+  sin excepciones. Se revisaron capturas de pantalla a 1326x688, 1140x660 (tamaño mínimo)
+  y 1600x950.
+- No se probó en un equipo Windows real. El código no usa nada específico de Linux;
+  las fuentes "Segoe UI" y "Consolas" existen en Windows (en otros sistemas Tk usa otra
+  fuente similar automáticamente).
