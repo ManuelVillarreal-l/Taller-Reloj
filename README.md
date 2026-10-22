@@ -144,10 +144,4 @@ Comprobación: 3:00 → 90° → punta a la derecha (el 3); 6:00 → 180° → a
    ```
    o bien `py main.py`. También puedes abrir `main.py` y pulsar el botón ▶ *Run Python File*.
 
-## 10. Cómo demostrarle al profesor que la lista funciona
 
-1. Pulsa **Ejecutar autopruebas**: aparecen 35 pruebas en verde, entre ellas *"move_forward(12) devuelve el nodo 1"*, *"move_backward(1) devuelve el nodo 12"* y *"verify_integrity() detecta un enlace dañado"* (se rompe un enlace a propósito en una lista de prueba y el verificador lo detecta: prueba de que la verificación no es decorativa).
-2. Pulsa **Hora siguiente** hasta llegar a las 12 y una vez más: la barra de estado indica *"¡Se cruzó el enlace circular 12 → 1!"* y el nodo resaltado del diagrama pasa del 12 al 1.
-3. Pulsa **Recorrer adelante** y **Recorrer atrás**: se ilumina cada nodo y el recorrido termina en el nodo inicial (1 → … → 12 → 1).
-4. Muestra en el código que `ArcaneTime.next_hour()` llama a `self.hour_list.move_forward(...)`, y que `hour_node` es un objeto `HourNode`.
-5. Busca en el proyecto la palabra `import`: solo aparece `import tkinter as tk`.
